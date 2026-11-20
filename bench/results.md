@@ -5,13 +5,13 @@ project continues.
 
 | Brief | Panel preferred (votes) | Criteria won by plugin film | Owner preferred | Plugin film's own panel: runs, rejections left, reaches the bar | Stock build: tokens, minutes | Plugin build: tokens, minutes | Judging: tokens, minutes | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 01 Tally | Plugin film, 3 of 3, each "clearly" | 6 of 9 by majority (composition, payoff, stage, typography, rhythm 3 of 3; story 2 of 3). Stock won UI credibility and the ending 3 of 3. Slideshow feel: no majority | pending | 3 runs; 1 rejection left ("the ask", 3 of 3 in rounds 2 and 3); reaches the bar 0 of 3 in every round | 284k, 37 | 471k in all (first draft 271k, 31 min; two revisions about 200k, about 25 min) | Own panel, 9 judges: about 780k, 2 to 2.5 min each. Comparison, 3 judges: about 306k, 2.5 to 3 min each | See notes 1 to 6 |
+| 01 Tally | Plugin film, 3 of 3, each "clearly" | 6 of 9 by majority (composition, payoff, stage, typography, rhythm 3 of 3; story 2 of 3). Stock won UI credibility and the ending 3 of 3. Slideshow feel: no majority | Plugin film, blind ("for the details") | 3 runs; 1 rejection left ("the ask", 3 of 3 in rounds 2 and 3); reaches the bar 0 of 3 in every round | 284k, 37 | 471k in all (first draft 271k, 31 min; two revisions about 200k, about 25 min) | Own panel, 9 judges: about 780k, 2 to 2.5 min each. Comparison, 3 judges: about 306k, 2.5 to 3 min each | See notes 1 to 6 |
 | 02 Ferry | | | | | | | | |
 | 03 Pocketleaf | | | | | | | | |
 | 04 Gauge | | | | | | | | |
 | 05 Loop | | | | | | | | |
 
-**Running total:** panel 1 of 1, owner 0 of 0 (brief 1 pending).
+**Running total:** panel 1 of 1, owner 1 of 1.
 
 ## Notes on brief 1 (2026-11-20)
 

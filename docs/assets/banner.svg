@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="Tough Crowd. Your agent directs the film. Three blind judges decide what gets reshot.">
+  <defs>
+    <radialGradient id="glow" cx="22%" cy="30%" r="80%">
+      <stop offset="0" stop-color="#26221c"/>
+      <stop offset="0.55" stop-color="#131214"/>
+      <stop offset="1" stop-color="#0c0c0e"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c1c20"/>
+      <stop offset="1" stop-color="#151518"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="400" rx="20" fill="url(#glow)"/>
+
+  <!-- Wordmark -->
+  <g font-family="Georgia, 'Times New Roman', Times, serif" fill="#f3ecdf">
+    <text x="72" y="178" font-size="86" letter-spacing="-1.5">Tough Crowd</text>
+  </g>
+  <rect x="76" y="206" width="64" height="4" rx="2" fill="#ef6a5b"/>
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="24" fill="#b7b1a6">
+    <text x="74" y="258">Your agent directs the film.</text>
+    <text x="74" y="292">Three blind judges decide what gets reshot.</text>
+  </g>
+  <g font-family="ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace" font-size="15" fill="#77736c">
+    <text x="74" y="342">a director layer for HyperFrames</text>
+  </g>
+
+  <!-- Panel result card -->
+  <rect x="744" y="56" width="472" height="288" rx="14" fill="url(#card)" stroke="#2c2c32"/>
+  <g font-family="ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace" font-size="14">
+    <text x="772" y="94" fill="#8d8a84">PANEL.md</text>
+    <text x="1188" y="94" fill="#8d8a84" text-anchor="end">round 3 of 3</text>
+  </g>
+  <line x1="744" y1="112" x2="1216" y2="112" stroke="#2c2c32"/>
+
+  <g font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17">
+    <!-- row 1 -->
+    <text x="772" y="146" fill="#e9e2d5">the mess</text>
+    <g fill="#5fbf8f"><circle cx="1010" cy="140" r="6"/><circle cx="1032" cy="140" r="6"/><circle cx="1054" cy="140" r="6"/></g>
+    <text x="1188" y="146" fill="#5fbf8f" text-anchor="end">accept</text>
+
+    <!-- row 2: rejected -->
+    <rect x="756" y="162" width="448" height="38" rx="8" fill="#ef6a5b" fill-opacity="0.12"/>
+    <text x="772" y="187" fill="#f3ecdf">the ask</text>
+    <g fill="#ef6a5b"><circle cx="1010" cy="181" r="6"/><circle cx="1032" cy="181" r="6"/><circle cx="1054" cy="181" r="6"/></g>
+    <text x="1188" y="187" fill="#ef6a5b" text-anchor="end" font-weight="600">reject</text>
+
+    <!-- row 3 -->
+    <text x="772" y="228" fill="#e9e2d5">notes become tasks</text>
+    <g fill="#5fbf8f"><circle cx="1010" cy="222" r="6"/><circle cx="1032" cy="222" r="6"/><circle cx="1054" cy="222" r="6"/></g>
+    <text x="1188" y="228" fill="#5fbf8f" text-anchor="end">accept</text>
+
+    <!-- row 4 -->
+    <text x="772" y="269" fill="#e9e2d5">the proof</text>
+    <g fill="#5fbf8f"><circle cx="1010" cy="263" r="6"/><circle cx="1032" cy="263" r="6"/><circle cx="1054" cy="263" r="6"/></g>
+    <text x="1188" y="269" fill="#5fbf8f" text-anchor="end">accept</text>
+
+    <!-- row 5 -->
+    <text x="772" y="310" fill="#e9e2d5">the line</text>
+    <g fill="#5fbf8f"><circle cx="1010" cy="304" r="6"/><circle cx="1032" cy="304" r="6"/><circle cx="1054" cy="304" r="6"/></g>
+    <text x="1188" y="310" fill="#5fbf8f" text-anchor="end">accept</text>
+  </g>
+</svg>
