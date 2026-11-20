@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- Stage preset "cool-studio" with the "modern" type pairing. See skills/direct/references/stages.md. -->
+<html lang="en" data-composition-id="cool-studio" data-composition-duration="6">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cool studio</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #16191c;
+          font-family: "Inter", sans-serif;
+        }
+        #cs-ground {
+          position: absolute; inset: 0; z-index: 0;
+          background: linear-gradient(168deg, #e6e9ec 0%, #d7dce1 46%, #c6cdd4 100%);
+        }
+        #cs-light {
+          position: absolute; left: -200px; top: -260px; width: 1700px; height: 1200px; z-index: 1;
+          background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+        #cs-glow {
+          position: absolute; left: 300px; top: -200px; width: 1500px; height: 1100px; z-index: 4;
+          opacity: 0.5; pointer-events: none;
+          background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(240, 246, 255, 0.45) 0%, rgba(240, 246, 255, 0) 100%);
+        }
+        #cs-grain {
+          position: absolute; inset: 0; z-index: 5; pointer-events: none;
+          opacity: 0.14; mix-blend-mode: multiply; background-size: 320px 320px;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.3  0 0 0 0 0.33  0 0 0 0.9 0'/></filter><rect width='320' height='320' filter='url(%23n)'/></svg>");
+        }
+        #cs-vignette {
+          position: absolute; inset: 0; z-index: 6; pointer-events: none;
+          background: radial-gradient(ellipse 75% 75% at 50% 48%, rgba(20, 30, 40, 0) 58%, rgba(20, 30, 40, 0.18) 100%);
+        }
+        #cs-scene {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+        }
+        #cs-card {
+          position: absolute;
+          left: 410px;
+          top: 270px;
+          width: 1100px;
+          height: 540px;
+          border-radius: 26px;
+          background: #ffffff;
+          border: 1px solid #dfe3e7;
+          box-shadow: 0 1px 1px rgba(20, 30, 45, 0.16), 0 3px 6px rgba(20, 30, 45, 0.1), 0 14px 30px rgba(20, 30, 45, 0.1), 0 50px 110px rgba(20, 30, 45, 0.22);
+        }
+        #cs-title {
+          position: absolute;
+          left: 72px;
+          top: 64px;
+          font-family: "Outfit", sans-serif;
+          font-size: 112px;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          line-height: 120px;
+          white-space: nowrap;
+        }
+        #cs-rule {
+          position: absolute;
+          left: 72px;
+          right: 72px;
+          top: 222px;
+          height: 2px;
+          background: #dfe3e7;
+        }
+        #cs-strong {
+          position: absolute;
+          left: 72px;
+          top: 262px;
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 48px;
+          white-space: nowrap;
+        }
+        #cs-muted {
+          position: absolute;
+          left: 72px;
+          top: 326px;
+          font-size: 30px;
+          font-weight: 400;
+          line-height: 42px;
+          color: #5b6570;
+          white-space: nowrap;
+        }
+        #cs-mono {
+          position: absolute;
+          left: 72px;
+          top: 408px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 28px;
+          font-weight: 400;
+          line-height: 40px;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div id="root" data-composition-id="cool-studio" data-width="1920" data-height="1080">
+        <div id="cs-ground"></div>
+        <div id="cs-light" data-layout-allow-overflow></div>
+        <div
+          id="cs-scene"
+          class="clip"
+          data-start="0"
+          data-duration="6"
+          data-track-index="0"
+        >
+          <div id="cs-card">
+            <div id="cs-title">Cool studio</div>
+            <div id="cs-rule"></div>
+            <div id="cs-strong">Interface text sits on the surface colour</div>
+            <div id="cs-muted">Secondary text uses the muted colour</div>
+            <div id="cs-mono">notes and code use the mono face</div>
+          </div>
+        </div>
+        <div id="cs-glow" data-layout-allow-overflow></div>
+        <div id="cs-grain"></div>
+        <div id="cs-vignette"></div>
+      </div>
+
+      <script>
+        (function () {
+          var D = 6;
+          var tl = gsap.timeline({ paused: true });
+          // The stage light drifts at constant speed for the whole scene.
+          tl.fromTo("#cs-light", { x: -150, y: -40 }, { x: 130, y: 30, duration: D, ease: "none" }, 0);
+          tl.fromTo("#cs-glow", { x: 120, y: 0 }, { x: -260, y: 90, duration: D, ease: "none" }, 0);
+          // The card settles in once, then is still.
+          tl.fromTo("#cs-card", { scale: 1.04 }, { scale: 1, duration: 1.4, ease: "expo.out" }, 0);
+          window.__timelines = window.__timelines || {};
+          window.__timelines["cool-studio"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

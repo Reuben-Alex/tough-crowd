@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- Stage preset "warm-paper" with the "editorial" type pairing. See skills/direct/references/stages.md. -->
+<html lang="en" data-composition-id="warm-paper" data-composition-duration="6">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Warm paper</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #241e18;
+          font-family: "Inter", sans-serif;
+        }
+        #wp-ground {
+          position: absolute; inset: 0; z-index: 0;
+          background: linear-gradient(168deg, #e0d0b9 0%, #d9c7ae 46%, #cdb898 100%);
+        }
+        #wp-light {
+          position: absolute; left: -200px; top: -260px; width: 1700px; height: 1200px; z-index: 1;
+          background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 246, 228, 0.62) 0%, rgba(255, 246, 228, 0) 100%);
+        }
+        #wp-glow {
+          position: absolute; left: 300px; top: -200px; width: 1500px; height: 1100px; z-index: 4;
+          opacity: 0.5; pointer-events: none;
+          background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255, 240, 214, 0.5) 0%, rgba(255, 240, 214, 0) 100%);
+        }
+        #wp-grain {
+          position: absolute; inset: 0; z-index: 5; pointer-events: none;
+          opacity: 0.16; mix-blend-mode: multiply; background-size: 320px 320px;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0 0.2  0 0 0 0.9 0'/></filter><rect width='320' height='320' filter='url(%23n)'/></svg>");
+        }
+        #wp-vignette {
+          position: absolute; inset: 0; z-index: 6; pointer-events: none;
+          background: radial-gradient(ellipse 75% 75% at 50% 48%, rgba(60, 40, 20, 0) 58%, rgba(60, 40, 20, 0.2) 100%);
+        }
+        #wp-scene {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+        }
+        #wp-card {
+          position: absolute;
+          left: 410px;
+          top: 270px;
+          width: 1100px;
+          height: 540px;
+          border-radius: 26px;
+          background: #fbf7f0;
+          border: 1px solid #e3d8c8;
+          box-shadow: 0 1px 1px rgba(60, 40, 20, 0.16), 0 3px 6px rgba(60, 40, 20, 0.1), 0 14px 30px rgba(60, 40, 20, 0.1), 0 50px 110px rgba(60, 40, 20, 0.22);
+        }
+        #wp-title {
+          position: absolute;
+          left: 72px;
+          top: 64px;
+          font-family: "EB Garamond", serif;
+          font-size: 112px;
+          font-weight: 500;
+          letter-spacing: -0.02em;
+          line-height: 120px;
+          white-space: nowrap;
+        }
+        #wp-rule {
+          position: absolute;
+          left: 72px;
+          right: 72px;
+          top: 222px;
+          height: 2px;
+          background: #e3d8c8;
+        }
+        #wp-strong {
+          position: absolute;
+          left: 72px;
+          top: 262px;
+          font-size: 36px;
+          font-weight: 600;
+          line-height: 48px;
+          white-space: nowrap;
+        }
+        #wp-muted {
+          position: absolute;
+          left: 72px;
+          top: 326px;
+          font-size: 30px;
+          font-weight: 400;
+          line-height: 42px;
+          color: #6b5f52;
+          white-space: nowrap;
+        }
+        #wp-mono {
+          position: absolute;
+          left: 72px;
+          top: 408px;
+          font-family: "IBM Plex Mono", monospace;
+          font-size: 28px;
+          font-weight: 400;
+          line-height: 40px;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div id="root" data-composition-id="warm-paper" data-width="1920" data-height="1080">
+        <div id="wp-ground"></div>
+        <div id="wp-light" data-layout-allow-overflow></div>
+        <div
+          id="wp-scene"
+          class="clip"
+          data-start="0"
+          data-duration="6"
+          data-track-index="0"
+        >
+          <div id="wp-card">
+            <div id="wp-title">Warm paper</div>
+            <div id="wp-rule"></div>
+            <div id="wp-strong">Interface text sits on the surface colour</div>
+            <div id="wp-muted">Secondary text uses the muted colour</div>
+            <div id="wp-mono">notes and code use the mono face</div>
+          </div>
+        </div>
+        <div id="wp-glow" data-layout-allow-overflow></div>
+        <div id="wp-grain"></div>
+        <div id="wp-vignette"></div>
+      </div>
+
+      <script>
+        (function () {
+          var D = 6;
+          var tl = gsap.timeline({ paused: true });
+          // The stage light drifts at constant speed for the whole scene.
+          tl.fromTo("#wp-light", { x: -150, y: -40 }, { x: 130, y: 30, duration: D, ease: "none" }, 0);
+          tl.fromTo("#wp-glow", { x: 120, y: 0 }, { x: -260, y: 90, duration: D, ease: "none" }, 0);
+          // The card settles in once, then is still.
+          tl.fromTo("#wp-card", { scale: 1.04 }, { scale: 1, duration: 1.4, ease: "expo.out" }, 0);
+          window.__timelines = window.__timelines || {};
+          window.__timelines["warm-paper"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
