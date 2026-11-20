@@ -4,6 +4,7 @@ import { parseArgs } from "node:util";
 import { ToolError } from "../src/ffmpeg.mjs";
 import { packet } from "../src/packet.mjs";
 import { tally } from "../src/tally.mjs";
+import { verify } from "../src/verify.mjs";
 
 const USAGE = `Usage: video-director <command>
 
@@ -16,6 +17,10 @@ const USAGE = `Usage: video-director <command>
 
   tally <packet folder> [--panel-out <file>]
       Turn the judges' answers into PANEL.md. Exits 1 if a shot is rejected.
+
+  verify <film> [--panel <PANEL.md>]
+      Confirm the film is the one the panel judged, and print what the
+      delivery note must lead with. Exits 2 if it is not.
 
 Exit codes: 0 success, 1 the panel rejected a shot, 2 bad input or a refusal.`;
 
@@ -61,6 +66,19 @@ const commands = {
     const { exitCode, markdown } = await tally(out, { panelOut });
     console.log(markdown.split("\n").slice(0, 4).join("\n").replaceAll("*", ""));
     console.log(`\nFull result: ${join(out, "PANEL.md")}`);
+    return exitCode;
+  },
+
+  async verify(args) {
+    const { values, positionals } = parseArgs({
+      args,
+      allowPositionals: true,
+      options: { panel: { type: "string" } },
+    });
+    const { exitCode, lines } = await verify(positionals[0], {
+      panel: resolve(values.panel ?? "PANEL.md"),
+    });
+    (exitCode === 0 ? console.log : console.error)(lines.join("\n"));
     return exitCode;
   },
 };
