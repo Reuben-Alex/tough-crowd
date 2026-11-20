@@ -41,3 +41,16 @@ test("the owner's pick is blind and reference frames are documented", async () =
   assert.ok((await read("bench/PROCEDURE.md")).includes("from the plugin project folder"));
   assert.ok((await read("README.md")).includes("--refs"));
 });
+
+test("the skill's worked example uses no product from the test set", async () => {
+  const d = await read("skills/direct/references/direction.md");
+  const example = d.slice(d.indexOf("## A complete example"));
+  for (const name of ["Tally", "Ferry", "Pocketleaf", "Gauge", "Loop"]) {
+    assert.ok(!new RegExp(`\\b${name}\\b`, "i").test(example), name);
+  }
+});
+
+test("the results record the changes made between briefs", async () => {
+  const r = await read("bench/results.md");
+  assert.ok(r.includes("## Changes after brief 1"));
+});

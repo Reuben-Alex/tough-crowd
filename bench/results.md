@@ -53,3 +53,15 @@ project continues.
    - The stock agent's `hyperframes add` wrote to the system clipboard and left unused
      component files and a lock file in its project.
    - The plugin agent's run was interrupted once by a usage limit and resumed without loss.
+
+## Changes after brief 1 (2026-11-21)
+
+Made before briefs 2 to 5, so their rows do not measure the same skill as row 1.
+
+1. **The worked example moved off the test set.** `skills/direct/references/direction.md` now
+   uses an invented writing app with four shots instead of the Tally brief, and every hold of a
+   finished result in it meets the 1.25 second rule. This answers note 1.
+2. **Judges write their own answer files.** The judge prompt names `judge-<n>.json` in the
+   answers folder, so nobody re-types replies. A judge whose harness cannot write files still
+   replies with the object. Answer files that start with a byte-order mark are now accepted.
+   This answers the first point of note 6.

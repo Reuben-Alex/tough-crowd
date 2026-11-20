@@ -176,9 +176,10 @@ What that does and does not show:
   second run on.
 - **It did not reach the bar.** The panel preferred it to the stock film and still said it was
   not there.
-- **This trial is not proof the skill transfers.** The skill's worked example uses the same
-  product as this brief. Four more briefs on other products decide whether the project
-  continues, and that rule is written down in [`bench/PROCEDURE.md`](bench/PROCEDURE.md).
+- **This trial is not proof the skill transfers.** At the time, the skill's worked example used
+  the same product as this brief. The example has since moved to a product outside the test
+  set. Four more briefs on other products decide whether the project continues, and that rule
+  is written down in [`bench/PROCEDURE.md`](bench/PROCEDURE.md).
 
 ## The tool
 
@@ -231,9 +232,7 @@ docs/superpowers/     the design and the build plan
 
 ## Roadmap
 
-- Run the four remaining test briefs, after moving the skill's worked example to a product
-  outside the test set.
-- Let judges write their own answer files, so nobody has to copy their replies by hand.
+- Run the four remaining test briefs.
 - Stronger staging rules for camera movement, and stage presets with more depth.
 - Publish to npm.
 

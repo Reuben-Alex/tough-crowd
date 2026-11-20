@@ -28,65 +28,60 @@ what the panel tool reads to give judges the time ranges.
 
 ## A complete example
 
-````markdown
-# Direction: Tally
+The product here is invented for this example. Your film has its own idea, its own number of
+shots and its own beats; take the format from this, not the story.
 
-**The idea.** Each messy note line turns into its task row, in place.
+````markdown
+# Direction: Margin
+
+**The idea.** A rough paragraph tightens, in place, into the sentence it was trying to be.
 
 ```shots
-0.0-1.3 | the mess
-1.3-4.2 | the ask
-4.2-8.8 | notes become tasks
-8.8-11.6 | the proof
-11.6-15.0 | the line
+0.0-2.0 | the draft
+2.0-7.5 | the cuts
+7.5-11.0 | the count
+11.0-15.0 | the line
 ```
 
-## 0.0-1.3 the mess
+## 0.0-2.0 the draft
 
-- **Action:** the last line of the notes finishes being typed.
-- **Hero:** the notes card, 64% of the frame's width.
-- **Others:** nothing else on stage.
-- **Eye:** the block caret at the end of the last line.
-- **Hold:** 0.2 s after the typing stops.
-- **Cause:** the typing stops; the prompt bar rises.
+- **Action:** the cursor sweeps a selection across the rough paragraph and presses "Tighten",
+  on a slow push in.
+- **Hero:** the paragraph, 68% of the frame's width, on a page whose edges are all out of frame.
+- **Others:** the toolbar and sidebar are cropped out; the "Tighten" button sits at the end of
+  the selection.
+- **Eye:** the selection sweep, left to right.
+- **Hold:** 0.3 s on the pressed button.
+- **Cause:** the press; the first wordy phrase takes a red underline.
 
-## 1.3-4.2 the ask
+## 2.0-7.5 the cuts
 
-- **Action:** "Turn these notes into tasks" is typed and sent.
-- **Hero:** the prompt bar, 61% of the frame's width, in front.
-- **Others:** the notes card behind it, smaller, blurred 3 px; the bar overlaps its lower 15%.
-- **Eye:** the caret in the prompt bar.
-- **Hold:** 0.2 s on the sent state.
-- **Cause:** the send button is pressed; the bar drops away and focus returns to the card.
+- **Action:** five phrases are struck through one at a time, and the line closes up after each
+  before the next is struck. The camera drifts right with the cut.
+- **Hero:** the line being cut, 72% of the frame's width.
+- **Others:** the lines above and below, blurred 3 px at lower contrast.
+- **Eye:** the strike, then the gap closing.
+- **Hold:** 1.4 s on the finished sentence at full contrast.
+- **Cause:** the sentence is complete; a word-count chip slides in under it.
 
-## 4.2-8.8 notes become tasks
+## 7.5-11.0 the count
 
-- **Action:** each note line is highlighted and becomes a task row where it stands; filler
-  lines close up; the count climbs to 5.
-- **Hero:** the card, 76% of the frame's width once it has widened.
-- **Others:** nothing else on stage.
-- **Eye:** the line being highlighted, then its row.
-- **Hold:** 1.25 s on the finished list, on a slow push.
-- **Cause:** the list is complete; one row lifts out of it.
+- **Action:** the chip counts down from "84 words" to "31 words", and each cut phrase appears
+  faintly in the margin beside the place it was cut, joined to it by a red hairline.
+- **Hero:** the finished sentence with its chip, 70% of the frame's width.
+- **Others:** the margin notes, smaller, blurred 1 px, at half contrast.
+- **Eye:** the count, then the margin notes.
+- **Hold:** 1.5 s after the last margin note.
+- **Cause:** the margin notes fade; the page recedes and softens.
 
-## 8.8-11.6 the proof
+## 11.0-15.0 the line
 
-- **Action:** the source line appears under the lifted row; "marcus" and "by 14th" are
-  highlighted, and the owner chip and date pill take the same highlight.
-- **Hero:** the lifted row as its own card, 73% of the frame's width.
-- **Others:** the list behind it, blurred 4.5 px and slightly darker; the stage still visible.
-- **Eye:** the highlighted words, then the chips.
-- **Hold:** 1.1 s after the second highlight.
-- **Cause:** the lifted card dissolves; the list stays, softer.
-
-## 11.6-15.0 the line
-
-- **Action:** "Messy notes in. Clean tasks out." arrives word by word, then the mark draws.
-- **Hero:** the two-line serif claim, 14% of the frame's height per line.
-- **Others:** the list behind, blurred 22 px, at a third of its contrast.
-- **Eye:** the claim, then the mark.
-- **Hold:** 1.9 s after the mark.
+- **Action:** "Say it once." arrives as one line, then the Margin mark draws beneath it.
+- **Hero:** the serif line, 12% of the frame's height.
+- **Others:** the page behind it, blurred 20 px at a third of its contrast, still on screen.
+- **Eye:** the line, then the mark.
+- **Hold:** 1.75 s after the mark.
 - **Cause:** the film ends.
 
-**The ending's focal point:** the claim. The mark is 88 px tall.
+**The ending's focal point:** the line. The mark is 9% of the frame's height.
 ````
