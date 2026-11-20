@@ -165,7 +165,7 @@ Three new judges then compare the two films under neutral names.
 | | Brief 1: Tally, a notes app | Brief 2: Ferry, a command-line tool |
 | --- | --- | --- |
 | Blind comparison | Tough Crowd preferred, 3 of 3, each "clearly" | Stock preferred, 3 of 3, each "clearly" |
-| The project owner, also blind | Tough Crowd | Pending |
+| The project owner, also blind | Tough Crowd | Stock |
 | Criteria Tough Crowd won | Composition, payoff, stage, typography, rhythm, story | Story only |
 | Rejected shots in its own three panel runs | 2 of 5, then 1, then 1 | 3 of 4 every run, a different set each time |
 | Judges who saw it alone and said it reaches the bar | 0 of 9 | 0 of 9 |

@@ -6,13 +6,13 @@ project continues.
 | Brief | Panel preferred (votes) | Criteria won by plugin film | Owner preferred | Plugin film's own panel: runs, rejections left, reaches the bar | Stock build: tokens, minutes | Plugin build: tokens, minutes | Judging: tokens, minutes | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 01 Tally | Plugin film, 3 of 3, each "clearly" | 6 of 9 by majority (composition, payoff, stage, typography, rhythm 3 of 3; story 2 of 3). Stock won UI credibility and the ending 3 of 3. Slideshow feel: no majority | Plugin film, blind ("for the details") | 3 runs; 1 rejection left ("the ask", 3 of 3 in rounds 2 and 3); reaches the bar 0 of 3 in every round | 284k, 37 | 471k in all (first draft 271k, 31 min; two revisions about 200k, about 25 min) | Own panel, 9 judges: about 780k, 2 to 2.5 min each. Comparison, 3 judges: about 306k, 2.5 to 3 min each | See notes 1 to 6 |
-| 02 Ferry | Stock film, 3 of 3, each "clearly" | 1 of 9 by majority (story 3 of 3). Payoff 2 of 3 to the plugin film, its only other majority. Stock won stage, UI credibility, rhythm, ending and slideshow feel 3 of 3, composition and typography 2 of 3 | pending | 3 runs; 3 of 4 rejected in every run, a different set each time; reaches the bar 0 of 3 in every round | 201k, 12 | 316k in all (first draft 206k, 13 min; two revisions about 110k, about 14 min) | Own panel, 10 judges (one re-run): about 815k, 1 to 1.5 min each. Comparison, 3 judges: about 301k, 2 to 2.5 min each | See notes on brief 2 |
+| 02 Ferry | Stock film, 3 of 3, each "clearly" | 1 of 9 by majority (story 3 of 3). Payoff 2 of 3 to the plugin film, its only other majority. Stock won stage, UI credibility, rhythm, ending and slideshow feel 3 of 3, composition and typography 2 of 3 | Stock film, blind | 3 runs; 3 of 4 rejected in every run, a different set each time; reaches the bar 0 of 3 in every round | 201k, 12 | 316k in all (first draft 206k, 13 min; two revisions about 110k, about 14 min) | Own panel, 10 judges (one re-run): about 815k, 1 to 1.5 min each. Comparison, 3 judges: about 301k, 2 to 2.5 min each | See notes on brief 2 |
 | 03 Pocketleaf | | | | | | | | |
 | 04 Gauge | | | | | | | | |
 | 05 Loop | | | | | | | | |
 
-**Running total:** panel 1 of 2, owner 1 of 1 (brief 2 pending). One brief lost; a second loss
-on either count stops the test.
+**Running total:** panel 1 of 2, owner 1 of 2. Brief 2 is lost on both counts; one more lost
+brief on either count stops the test.
 
 ## Notes on brief 1 (2026-11-20)
 
