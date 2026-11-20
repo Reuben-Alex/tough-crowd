@@ -156,30 +156,31 @@ And this is the kind of note that comes back. It is a real one, from the film ab
 
 ## Does it work?
 
-One trial so far, out of five planned. The full record is in [`bench/results.md`](bench/results.md).
+Not yet, on the evidence so far. Two trials of five planned are done, and they split. The full
+record is in [`bench/results.md`](bench/results.md).
 
-The same brief went to two agents: one with the stock HyperFrames skills, one with Tough Crowd.
-Three new judges then compared the two films under neutral names.
+Each brief goes to two agents: one with the stock HyperFrames skills, one with Tough Crowd.
+Three new judges then compare the two films under neutral names.
 
-| | Result |
-| --- | --- |
-| Blind comparison | Tough Crowd film preferred by 3 of 3 judges, each "clearly" |
-| The project owner, also blind | Preferred the Tough Crowd film |
-| Tough Crowd won | Composition, payoff, stage, typography and rhythm (3 of 3), story (2 of 3) |
-| Stock won | UI credibility and the ending (3 of 3) |
-| Rejected shots across its own three panel runs | 2, then 1, then 1 |
-| Judges who saw it on its own and said it reaches the bar, a top-tier studio launch film | 0 of 9 |
+| | Brief 1: Tally, a notes app | Brief 2: Ferry, a command-line tool |
+| --- | --- | --- |
+| Blind comparison | Tough Crowd preferred, 3 of 3, each "clearly" | Stock preferred, 3 of 3, each "clearly" |
+| The project owner, also blind | Tough Crowd | Pending |
+| Criteria Tough Crowd won | Composition, payoff, stage, typography, rhythm, story | Story only |
+| Rejected shots in its own three panel runs | 2 of 5, then 1, then 1 | 3 of 4 every run, a different set each time |
+| Judges who saw it alone and said it reaches the bar | 0 of 9 | 0 of 9 |
 
-What that does and does not show:
+What that shows:
 
-- **The loop moved the film.** Both shots rejected in the first run were accepted from the
-  second run on.
-- **It did not reach the bar.** The panel preferred it to the stock film and still said it was
-  not there.
-- **This trial is not proof the skill transfers.** At the time, the skill's worked example used
-  the same product as this brief. The example has since moved to a product outside the test
-  set. Four more briefs on other products decide whether the project continues, and that rule
-  is written down in [`bench/PROCEDURE.md`](bench/PROCEDURE.md).
+- **Brief 1 does not count as transfer.** The skill's worked example used the same product. The
+  example has since moved to a product outside the test set; brief 2 is the first real test,
+  and it was lost.
+- **The fix loop can churn.** On brief 1 it moved the film. On brief 2 each revision fixed the
+  shots it was told about and broke or exposed others.
+- **Neither film reached the bar.** Judges preferred one film or the other, but all eighteen who
+  saw a Tough Crowd film on its own said it falls short of a top-tier studio launch film.
+
+The test stops after a second lost brief, by the rule in [`bench/PROCEDURE.md`](bench/PROCEDURE.md).
 
 ## The tool
 
@@ -232,7 +233,7 @@ docs/superpowers/     the design and the build plan
 
 ## Roadmap
 
-- Run the four remaining test briefs.
+- Run the three remaining test briefs, unless a second brief is lost first.
 - Stronger staging rules for camera movement, and stage presets with more depth.
 - Publish to npm.
 
