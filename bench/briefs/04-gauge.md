@@ -1,0 +1,3 @@
+Make a 20-second product scene, 1920x1080, for Gauge, a dashboard that turns an uploaded sales spreadsheet into a live chart you can ask questions of. I want it calm and product-led, in the spirit of Anthropic's launch films for Claude: the product UI is the hero, a spreadsheet goes in, the chart builds, a question types in and the chart answers it, the camera moves in on what matters. Clear, restrained, premium. Not a slideshow.
+
+Gauge is fictional: the agent invents a plausible UI, plausible sales figures and its own brand for it, and copies no existing company's logo, name or assets. Visuals only.
