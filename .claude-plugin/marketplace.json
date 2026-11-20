@@ -1,0 +1,13 @@
+{
+  "name": "tough-crowd",
+  "owner": {
+    "name": "Reuben-Alex"
+  },
+  "plugins": [
+    {
+      "name": "tough-crowd",
+      "source": "./",
+      "description": "Direct product films shot by shot on HyperFrames and have a blind panel of judges accept or reject each shot."
+    }
+  ]
+}

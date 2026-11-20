@@ -54,7 +54,13 @@ two of them reject goes back to be fixed.
 You need Node 22 or newer, FFmpeg 5.1 or newer, the HyperFrames skills (`npx hyperframes skills`)
 and a harness that can start subagents. Claude Code can.
 
-Clone this repository, then start Claude Code with the plugin loaded:
+Install it from inside Claude Code:
+
+```
+/plugin install tough-crowd --marketplace Reuben-Alex/tough-crowd
+```
+
+Or clone this repository and load it from the folder:
 
 ```
 claude --plugin-dir /path/to/tough-crowd
