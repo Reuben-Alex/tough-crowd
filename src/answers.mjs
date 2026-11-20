@@ -81,6 +81,46 @@ function singleAnswer(raw, key, file) {
   };
 }
 
+function abAnswer(raw, key, file) {
+  const names = key.films.map((film) => film.neutral);
+  const allowed = [...names, "none"];
+  const pick = (value, where) => {
+    if (!allowed.includes(value)) {
+      throw new ToolError(`${file}: ${where}: expected ${allowed.join(", ")}; got "${value}"`);
+    }
+    return value;
+  };
+  const closer = pick(raw.closer, "closer");
+  const films = {};
+  for (const name of names) {
+    const film = raw.films?.[name];
+    if (!film) throw new ToolError(`${file}: films.${name}: missing`);
+    if (typeof film.reachesBar !== "boolean") {
+      throw new ToolError(`${file}: films.${name}.reachesBar: expected true or false`);
+    }
+    films[name] = {
+      shots: shotVerdicts(film.shots, file, `films.${name}.shots`),
+      reachesBar: film.reachesBar,
+      mustFix: mustFixList(film.mustFix, file, `films.${name}.mustFix`),
+    };
+  }
+  const criteria = {};
+  for (const name of CRITERIA) {
+    const entry = raw.criteria?.[name];
+    criteria[name] = {
+      stronger: pick(entry?.stronger, `criteria.${name}.stronger`),
+      note: text(entry.note),
+    };
+  }
+  return {
+    films,
+    criteria,
+    closer,
+    margin: raw.margin ?? null,
+    couldNotJudge: Array.isArray(raw.couldNotJudge) ? raw.couldNotJudge.map(text) : [],
+  };
+}
+
 /**
  * Reads one judge's reply. A surrounding code fence and the case of verdicts and
  * priorities are forgiven; anything else that does not fit is refused by name.
@@ -98,5 +138,5 @@ export function parseAnswer(reply, key, file) {
       `${file}: not a JSON object. A judge must reply with only the JSON object; run this judge again.`,
     );
   }
-  return singleAnswer(raw, key, file);
+  return key.mode === "ab" ? abAnswer(raw, key, file) : singleAnswer(raw, key, file);
 }

@@ -166,13 +166,93 @@ function renderSingle(panel) {
   return lines.join("\n");
 }
 
+function tallyAb(key, answers) {
+  const names = key.films.map((film) => film.neutral);
+  const count = (picks) =>
+    Object.fromEntries([...names, "none"].map((n) => [n, picks.filter((p) => p === n).length]));
+  const votes = count(answers.map((a) => a.closer));
+  const preferred = names.find((n) => votes[n] > key.judges / 2) ?? null;
+  return {
+    version: 1,
+    mode: "ab",
+    judges: key.judges,
+    films: key.films.map(({ neutral, path }) => ({ neutral, path })),
+    votes,
+    preferred,
+    preferredPath: preferred ? key.films.find((f) => f.neutral === preferred).path : null,
+    margins: answers.filter((a) => preferred && a.closer === preferred).map((a) => a.margin),
+    criteria: Object.fromEntries(
+      Object.keys(answers[0].criteria).map((c) => [c, count(answers.map((a) => a.criteria[c].stronger))]),
+    ),
+    perFilm: Object.fromEntries(
+      names.map((n) => [
+        n,
+        {
+          reachesBarYes: answers.filter((a) => a.films[n].reachesBar).length,
+          rejectedShots: answers.map(
+            (a) => a.films[n].shots.filter((s) => s.verdict === "reject").length,
+          ),
+        },
+      ]),
+    ),
+    couldNotJudge: [...new Set(answers.flatMap((a) => a.couldNotJudge).map((s) => s.trim()))].filter(
+      Boolean,
+    ),
+  };
+}
+
+function renderAb(panel) {
+  const { films, judges, votes } = panel;
+  const names = films.map((film) => film.neutral);
+  const lines = ["# A/B result"];
+  if (panel.preferred) {
+    lines.push(
+      `**Preferred: ${basename(panel.preferredPath)}** (${votes[panel.preferred]} of ${judges} judges).  `,
+      `Path: \`${panel.preferredPath}\`  `,
+      `By how much, in those judges' words: ${panel.margins.filter(Boolean).join(", ") || "not stated"}.  `,
+    );
+  } else {
+    lines.push("**Not preferred: no majority.**  ");
+  }
+  lines.push(NOT_JUDGED, "", "The judges saw the films under these names, and did not know which was which:", "");
+  for (const film of films) lines.push(`- ${film.neutral}: \`${film.path}\``);
+  lines.push("", "## Votes for the film closer to the bar", "");
+  for (const name of [...names, "none"]) lines.push(`- ${name}: ${votes[name]}`);
+  lines.push("", "## Stronger film on each criterion", "");
+  lines.push(`| Criterion | ${names.join(" | ")} | none |`, `| --- | ${names.map(() => "---").join(" | ")} | --- |`);
+  for (const [criterion, counts] of Object.entries(panel.criteria)) {
+    lines.push(`| ${criterion} | ${names.map((n) => counts[n]).join(" | ")} | ${counts.none} |`);
+  }
+  lines.push("", "## Each film on its own", "");
+  for (const name of names) {
+    const own = panel.perFilm[name];
+    lines.push(
+      `- ${name}: reaches the bar according to ${own.reachesBarYes} of ${judges} judges; shots rejected by each judge: ${own.rejectedShots.join(", ")}`,
+    );
+  }
+  if (panel.couldNotJudge.length) {
+    lines.push("", "## What the judges could not judge", "");
+    for (const item of panel.couldNotJudge) lines.push(`- ${item}`);
+  }
+  lines.push("");
+  return lines.join("\n");
+}
+
 /**
  * Turns the judges' answers into a result. A shot is rejected when more than half
- * the judges reject it; only that makes the exit code 1.
+ * the judges reject it; only that makes the exit code 1. A comparison of two films
+ * always exits 0 and never writes the delivered PANEL.md.
  */
 export async function tally(out, { panelOut } = {}) {
   const key = await readKey(out);
   const answers = await readAnswers(out, key);
+  if (key.mode === "ab") {
+    const panel = tallyAb(key, answers);
+    const md = renderAb(panel);
+    await writeFile(join(out, "panel.json"), JSON.stringify(panel, null, 2) + "\n");
+    await writeFile(join(out, "PANEL.md"), md);
+    return { exitCode: 0, panel, markdown: md };
+  }
   const panel = tallySingle(key, answers);
   const md = renderSingle(panel);
   await writeFile(join(out, "panel.json"), JSON.stringify(panel, null, 2) + "\n");
