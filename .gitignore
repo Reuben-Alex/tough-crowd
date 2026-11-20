@@ -1,0 +1,5 @@
+.director/
+.superpowers/
+node_modules/
+examples/**/.hyperframes/
+examples/**/out/

@@ -1,0 +1,23 @@
+{
+  "name": "video-director",
+  "version": "0.1.0",
+  "description": "Direct product films shot by shot on HyperFrames and have a blind panel of judges accept or reject each shot.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "video-director": "bin/video-director.mjs"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "skills",
+    ".claude-plugin"
+  ]
+}
