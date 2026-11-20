@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { ToolError } from "../src/ffmpeg.mjs";
 import { packet } from "../src/packet.mjs";
+import { tally } from "../src/tally.mjs";
 
 const USAGE = `Usage: video-director <command>
 
@@ -11,6 +13,9 @@ const USAGE = `Usage: video-director <command>
       Prepare a blind comparison of two films.
 
   Options for packet: --refs <dir>  --out <dir>  --judges <n>  --seed <n>
+
+  tally <packet folder> [--panel-out <file>]
+      Turn the judges' answers into PANEL.md. Exits 1 if a shot is rejected.
 
 Exit codes: 0 success, 1 the panel rejected a shot, 2 bad input or a refusal.`;
 
@@ -42,6 +47,21 @@ const commands = {
     });
     console.log(JSON.stringify(result, null, 2));
     return 0;
+  },
+
+  async tally(args) {
+    const { values, positionals } = parseArgs({
+      args,
+      allowPositionals: true,
+      options: { "panel-out": { type: "string" } },
+    });
+    if (!positionals[0]) throw new ToolError("tally needs the folder packet created.");
+    const out = resolve(positionals[0]);
+    const panelOut = resolve(values["panel-out"] ?? "PANEL.md");
+    const { exitCode, markdown } = await tally(out, { panelOut });
+    console.log(markdown.split("\n").slice(0, 4).join("\n").replaceAll("*", ""));
+    console.log(`\nFull result: ${join(out, "PANEL.md")}`);
+    return exitCode;
   },
 };
 
