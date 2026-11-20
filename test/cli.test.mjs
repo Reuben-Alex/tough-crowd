@@ -36,3 +36,21 @@ test("packet prints its result as JSON", async () => {
   assert.match(result.out.replaceAll("\\", "/"), /\.director\/panel\/single-r1$/);
   assert.equal(result.judges, 3);
 });
+
+test("a name inherited from Object is not a command", () => {
+  const r = cli(["toString"]);
+  assert.equal(r.status, 2);
+  assert.match(r.stderr, /Usage: video-director/);
+});
+
+test("an unexpected failure exits 2, never the rejected-shot code", async () => {
+  const { mkdir } = await import("node:fs/promises");
+  const dir = await mkdtemp(join(tmpdir(), "vd broken "));
+  await mkdir(join(dir, "out", "answers"), { recursive: true });
+  await writeFile(join(dir, "out", "key.json"), "{ not json");
+  const r = cli(["tally", join(dir, "out")], dir);
+  assert.equal(r.status, 2, r.stderr);
+  assert.doesNotMatch(r.stderr, /\n\s+at /);
+  const folder = cli(["packet", "x.mp4", "--brief", dir, "--direction", dir], dir);
+  assert.equal(folder.status, 2);
+});

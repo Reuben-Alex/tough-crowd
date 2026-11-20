@@ -64,3 +64,13 @@ test("A/B brief names both films neutrally and asks which is closer", () => {
   assert.ok(b.includes('"closer"') && b.includes('"stronger"'));
   assert.ok(b.includes("Film K") && b.includes("Film R"));
 });
+
+test("both briefs tell the judge to read nothing but the brief and its images", () => {
+  const rule = "do not open, list or search any other file or folder";
+  assert.ok(single().includes(rule));
+  const ab = renderBrief({
+    mode: "ab", briefText: "Make a film.", silent: true, labels: true,
+    films: [{ ...film("K"), strips: [] }, { ...film("R"), strips: [] }], shots: null, refs: [],
+  });
+  assert.ok(ab.includes(rule));
+});

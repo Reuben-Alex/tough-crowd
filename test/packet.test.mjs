@@ -86,3 +86,19 @@ test("refuses shots that run past the end of the film", async () => {
   await writeFile(direction, "```shots\n0-2 | a\n2-9 | b\n```\n");
   await assert.rejects(packet({ film, brief, direction, out: join(dir, "out") }), /2-9/);
 });
+
+for (const [why, body] of [
+  ["a gap between shots", "0-1.5 | a\n2.5-4 | b"],
+  ["a last shot that ends early", "0-2 | a\n2-3 | b"],
+  ["a first shot that starts late", "1-2 | a\n2-4 | b"],
+]) {
+  test(`refuses ${why}: the shots must cover the whole film`, async () => {
+    const { dir, film, brief } = await setup();
+    const direction = join(dir, "PART.md");
+    await writeFile(direction, "```shots\n" + body + "\n```\n");
+    await assert.rejects(
+      packet({ film, brief, direction, out: join(dir, "out") }),
+      /cover the whole film/,
+    );
+  });
+}

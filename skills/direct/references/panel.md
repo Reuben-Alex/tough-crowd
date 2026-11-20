@@ -6,6 +6,9 @@ answers across unchanged.
 
 `vd` below means `node <SKILL_DIR>/../../bin/video-director.mjs`.
 
+Run every command from the film's project folder: `packet` writes under `.director/` there, and
+`tally` and `verify` use the `PANEL.md` there.
+
 ## One film
 
 1. **Render the draft**, then prepare the packet:
@@ -14,11 +17,15 @@ answers across unchanged.
    vd packet <film> --brief BRIEF.md --direction DIRECTION.md --round <n>
    ```
 
-   Add `--silent` when the film has no sound. It prints the brief's path and the answers folder.
+   Add `--silent` when the film has no sound. If the person gave you reference frames that show
+   the look they want, add `--refs <folder>` and the judges will see them. It prints the brief's
+   path and the answers folder.
 
-2. **Start three fresh subagents at the same time.** Give each exactly this and nothing else:
+2. **Start three fresh subagents at the same time.** A fresh subagent, not a fork of this
+   session: a fork inherits the whole conversation and knows what you intended. Give each
+   exactly this and nothing else:
 
-   > Read the file at `<brief path>` and follow it exactly. Reply with only the JSON object it asks for.
+   > Read the file at `<brief path>` and follow it exactly. Read nothing else except the images it lists. Reply with only the JSON object it asks for.
 
    No summary of the film, no intent, no earlier results, no encouragement.
 

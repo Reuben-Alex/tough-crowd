@@ -11,6 +11,7 @@ const NEUTRAL_LETTERS = "KMRTXZ";
 const REF_TYPES = new Set([".png", ".jpg", ".jpeg"]);
 const LONG_FILM_SECONDS = 30;
 const SHOT_END_SLACK = 0.05;
+const COVER_SLACK = 0.1;
 
 /** Small seeded generator, so a test can pin the neutral names. */
 function seeded(seed) {
@@ -36,6 +37,21 @@ function shuffled(items, random) {
 function mustExist(path, what) {
   if (!path || !existsSync(path)) throw new ToolError(`${what} not found: ${path}`);
   return resolve(path);
+}
+
+/** What part of the film no shot covers, or null. An uncovered stretch would go unjudged. */
+function uncovered(shots, duration) {
+  if (shots[0].start > COVER_SLACK) return `the first shot starts at ${shots[0].start}, not at 0`;
+  for (let i = 1; i < shots.length; i += 1) {
+    if (shots[i].start - shots[i - 1].end > COVER_SLACK) {
+      return `nothing covers ${shots[i - 1].end}-${shots[i].start}`;
+    }
+  }
+  const last = shots.at(-1);
+  if (duration - last.end > COVER_SLACK) {
+    return `the last shot ends at ${last.end} but the film runs to ${duration.toFixed(2)}`;
+  }
+  return null;
 }
 
 function validate({ film, ab, brief, direction, round, judges }) {
@@ -104,6 +120,12 @@ export async function packet(opts, deps = { makeSheets, boundaryStrips }) {
     if (late) {
       throw new ToolError(
         `Shot ${late.start}-${late.end} runs past the end of the film (${films[0].duration.toFixed(2)} s).`,
+      );
+    }
+    const gap = uncovered(shots, films[0].duration);
+    if (gap) {
+      throw new ToolError(
+        `The shots in the direction file must cover the whole film: ${gap}. Update it to match the render.`,
       );
     }
   }

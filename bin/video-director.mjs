@@ -13,7 +13,10 @@ const USAGE = `Usage: video-director <command>
   packet <film> --ab <other film> --brief <file> [--silent]
       Prepare a blind comparison of two films.
 
-  Options for packet: --refs <dir>  --out <dir>  --judges <n>  --seed <n>
+  Options for packet: --refs <dir of reference frames>  --out <dir>  --judges <n>  --seed <n>
+
+  Run every command from the film's project folder: packet writes under
+  .director/ there, and tally and verify use PANEL.md there.
 
   tally <packet folder> [--panel-out <file>]
       Turn the judges' answers into PANEL.md. Exits 1 if a shot is rejected.
@@ -63,9 +66,10 @@ const commands = {
     if (!positionals[0]) throw new ToolError("tally needs the folder packet created.");
     const out = resolve(positionals[0]);
     const panelOut = resolve(values["panel-out"] ?? "PANEL.md");
-    const { exitCode, markdown } = await tally(out, { panelOut });
+    const { exitCode, markdown, delivered } = await tally(out, { panelOut });
     console.log(markdown.split("\n").slice(0, 4).join("\n").replaceAll("*", ""));
     console.log(`\nFull result: ${join(out, "PANEL.md")}`);
+    if (delivered) console.log(`Delivered copy: ${delivered}`);
     return exitCode;
   },
 
@@ -84,7 +88,7 @@ const commands = {
 };
 
 async function main([name, ...args]) {
-  const command = commands[name];
+  const command = Object.hasOwn(commands, name ?? "") ? commands[name] : null;
   if (!command) {
     console.error(USAGE);
     return 2;
@@ -100,7 +104,9 @@ async function main([name, ...args]) {
       console.error(`${error.message}\n\n${USAGE}`);
       return 2;
     }
-    throw error;
+    // Never exit 1 by accident: 1 means the panel rejected a shot.
+    console.error(`Unexpected error: ${error.message}`);
+    return 2;
   }
 }
 

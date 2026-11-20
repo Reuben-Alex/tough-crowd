@@ -25,7 +25,8 @@ file you deliver.**
   **unjudged** (see The gate).
 - **The tool.** Run it as `node <SKILL_DIR>/../../bin/video-director.mjs <command>`, where
   `<SKILL_DIR>` is this skill's base directory. Its commands are `packet`, `tally` and
-  `verify`. It needs FFmpeg.
+  `verify`. It needs FFmpeg. Run every command from the film's project folder: `packet` writes
+  under `.director/` there, and `tally` and `verify` use the `PANEL.md` there.
 
 ## The pass
 
@@ -45,16 +46,17 @@ Do these in order. Write no composition code before step 5.
 
 ## The gate
 
-- You cannot overrule the panel. Fix what it rejects and submit again, or deliver with the
-  rejection stated first.
+- You cannot overrule the panel. While runs remain, a rejected shot is fixed and judged again.
+  Only after the third run may you deliver with rejections, and then they are stated first.
 - Only a rejected shot forces another round. "Does not reach the bar" is reported, not a reason
   to keep going.
 - Three panel runs at most for one film. Every run uses new judges.
 - The delivered file is the one last judged. Any edit after the last panel run makes it an
   unjudged file.
-- `verify <film>` must exit 0 before you deliver. The delivery note leads with what it prints.
-- No subagents in this harness: skip step 7, mark the film **unjudged** at the top of the
-  delivery note, and say why. Your own review is not a panel and is never called one.
+- A judged film: `verify <film>` must exit 0 before you deliver, and the delivery note leads
+  with what it prints.
+- No subagents in this harness: skip step 7 and `verify`, mark the film **unjudged** at the top
+  of the delivery note, and say why. Your own review is not a panel and is never called one.
 
 | Excuse | Reality |
 | --- | --- |

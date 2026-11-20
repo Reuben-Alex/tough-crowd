@@ -53,3 +53,23 @@ test("the direction reference shows the shots block", async () => {
     ),
   );
 });
+
+test("the gate closes the loopholes the review found", async () => {
+  const s = await read("skills/direct/SKILL.md");
+  for (const phrase of [
+    "Only after the third run", "skip step 7 and `verify`", "from the film's project folder",
+  ]) {
+    assert.ok(s.includes(phrase), phrase);
+  }
+});
+
+test("the panel procedure keeps judges blind and covers reference frames", async () => {
+  const p = await read("skills/direct/references/panel.md");
+  for (const phrase of [
+    "Read nothing else except the images it lists", "not a fork", "--refs",
+    "from the film's project folder",
+  ]) {
+    assert.ok(p.includes(phrase), phrase);
+  }
+  assert.ok((await read("skills/direct/references/direction.md")).includes("cover the whole film"));
+});

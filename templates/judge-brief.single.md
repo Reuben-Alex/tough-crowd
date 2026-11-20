@@ -16,7 +16,7 @@ The quality bar is a top-tier studio product launch film of the calm, restrained
 
 Contact sheets sampled at 4 frames per second, 12 tiles a sheet, in film order. {{labels}}
 
-Read every image listed here before you answer.
+Read every image listed here before you answer. Read only this brief and those images: do not open, list or search any other file or folder.
 
 {{images}}
 

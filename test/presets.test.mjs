@@ -26,3 +26,29 @@ test("three type pairings from bundled fonts only", async () => {
     assert.ok(t.includes(face), face);
   }
 });
+
+test("the example project cannot publish anywhere", async () => {
+  const pkg = JSON.parse(await read("examples/stages/package.json"));
+  assert.equal(pkg.scripts.publish, undefined);
+});
+
+test("the stage reference and the examples match their generator", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const { mkdtemp } = await import("node:fs/promises");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { fileURLToPath } = await import("node:url");
+  const out = await mkdtemp(join(tmpdir(), "vd presets "));
+  const script = fileURLToPath(new URL("../scripts/generate-stage-presets.mjs", import.meta.url));
+  const r = spawnSync(process.execPath, [script, out], { encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr);
+  for (const file of [
+    "skills/direct/references/stages.md",
+    "examples/stages/index.html",
+    "examples/stages/compositions/warm-paper.html",
+    "examples/stages/compositions/cool-studio.html",
+    "examples/stages/compositions/night.html",
+  ]) {
+    assert.equal(await readFile(join(out, file), "utf8"), await read(file), file);
+  }
+});

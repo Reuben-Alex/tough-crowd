@@ -8,7 +8,10 @@ what the panel tool reads to give judges the time ranges.
 1. **The idea.** One sentence naming the single thing the viewer watches change. Not a feature
    list and not a mood. If you cannot write it, you do not have a film yet.
 2. **The `shots` block.** One fenced block tagged `shots`, one shot per line, `start-end | name`,
-   times in seconds, in order, no overlaps. Three to six shots for a film up to 30 seconds.
+   times in seconds, in order, no overlaps. Three to six shots for a film up to 30 seconds. The
+   shots must cover the whole film, from 0 to its last frame with no gaps: a stretch no shot
+   covers would go unjudged, so the panel tool refuses it. When a revision changes the timing,
+   update this block to match the render.
 3. **One section per shot**, with every field below. A missing field is an unfinished shot.
 4. **The ending.** Its single focal point.
 

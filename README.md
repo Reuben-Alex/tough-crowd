@@ -46,7 +46,7 @@ at `skills/direct/` and run the tool with `node /path/to/video-director/bin/vide
 ## The tool
 
 ```
-video-director packet <film> --brief BRIEF.md --direction DIRECTION.md [--round <n>] [--silent]
+video-director packet <film> --brief BRIEF.md --direction DIRECTION.md [--round <n>] [--silent] [--refs <dir>]
 video-director packet <film> --ab <other film> --brief BRIEF.md [--silent]
 video-director tally <packet folder> [--panel-out <file>]
 video-director verify <film> [--panel <PANEL.md>]
@@ -58,7 +58,10 @@ video-director verify <film> [--panel <PANEL.md>]
 | `tally` | Reads the three answers and writes `PANEL.md` | 0 nothing rejected, 1 a shot is rejected, 2 on bad or missing answers |
 | `verify` | Confirms the file is the one judged and prints what the delivery note must lead with | 0, or 2 if it is not the judged file |
 
-`skills/direct/references/panel.md` has the full procedure.
+Run the commands from the film's project folder: `packet` writes under `.director/` there, and
+`tally` and `verify` use the `PANEL.md` there. `--refs <dir>` shows the judges reference frames
+you supply as examples of the look you want. `skills/direct/references/panel.md` has the full
+procedure.
 
 ## Limits
 

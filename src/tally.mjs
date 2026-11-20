@@ -24,7 +24,11 @@ export function readFooter(panelMd) {
 async function readKey(out) {
   const path = join(out, "key.json");
   if (!existsSync(path)) throw new ToolError(`No key.json in ${out}. Run packet first.`);
-  return JSON.parse(await readFile(path, "utf8"));
+  try {
+    return JSON.parse(await readFile(path, "utf8"));
+  } catch {
+    throw new ToolError(`key.json in ${out} is not readable. Run packet again.`);
+  }
 }
 
 async function readAnswers(out, key) {
@@ -53,11 +57,18 @@ async function readAnswers(out, key) {
   return answers;
 }
 
+/** The first time a note names, in seconds: `8.75`, `0:08.75` or `00:00:08.750`. */
+function firstTime(t) {
+  const m = t.match(/(?:(\d+):)?(?:(\d+):)?(\d+(?:\.\d+)?)/);
+  if (!m) return null;
+  const parts = [m[1], m[2], m[3]].filter((part) => part !== undefined).map(Number);
+  return parts.reduce((total, part) => total * 60 + part, 0);
+}
+
 /** Which shot a must-fix note belongs to: the one containing the first time it names. */
 function shotOf(t, shots) {
-  const first = t.match(/\d+(?:\.\d+)?/);
-  if (!first) return null;
-  const at = Number(first[0]);
+  const at = firstTime(t);
+  if (at === null) return null;
   const index = shots.findIndex(
     (shot, i) => at >= shot.start && (at < shot.end || (i === shots.length - 1 && at <= shot.end)),
   );
@@ -251,12 +262,17 @@ export async function tally(out, { panelOut } = {}) {
     const md = renderAb(panel);
     await writeFile(join(out, "panel.json"), JSON.stringify(panel, null, 2) + "\n");
     await writeFile(join(out, "PANEL.md"), md);
-    return { exitCode: 0, panel, markdown: md };
+    return { exitCode: 0, panel, markdown: md, delivered: null };
   }
   const panel = tallySingle(key, answers);
   const md = renderSingle(panel);
   await writeFile(join(out, "panel.json"), JSON.stringify(panel, null, 2) + "\n");
   await writeFile(join(out, "PANEL.md"), md);
   if (panelOut) await writeFile(panelOut, md);
-  return { exitCode: panel.rejected.length ? 1 : 0, panel, markdown: md };
+  return {
+    exitCode: panel.rejected.length ? 1 : 0,
+    panel,
+    markdown: md,
+    delivered: panelOut ?? null,
+  };
 }

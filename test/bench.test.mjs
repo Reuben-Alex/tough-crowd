@@ -35,3 +35,9 @@ test("the README states the limits", async () => {
   const r = await read("README.md");
   assert.ok(r.includes("motion at speed") && r.includes("sound") && r.includes("Apache-2.0"));
 });
+
+test("the owner's pick is blind and reference frames are documented", async () => {
+  assert.ok((await read("bench/PROCEDURE.md")).includes("neutral names"));
+  assert.ok((await read("bench/PROCEDURE.md")).includes("from the plugin project folder"));
+  assert.ok((await read("README.md")).includes("--refs"));
+});

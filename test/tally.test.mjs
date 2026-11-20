@@ -140,3 +140,29 @@ test("the command exits 1 when a shot is rejected and writes PANEL.md beside it"
   assert.match(r.stdout, /Rejected shots: 1 of 3/);
   assert.ok(readFooter(await readFile(join(d, "PANEL.md"), "utf8")));
 });
+
+test("a must-fix time written like the tile labels lands on the right shot", async () => {
+  const fix = (t) => ({ t, where: "w", problem: "p", change: "c", priority: "P1" });
+  const { out, panelOut } = await run([
+    singleAnswer(shots, { mustFix: [fix("00:00:03.500"), fix("0:01.6 to 0:02.0")] }),
+    singleAnswer(shots),
+    singleAnswer(shots),
+  ]);
+  const { panel } = await tally(out, { panelOut });
+  assert.deepEqual(panel.mustFix.map((m) => m.shot), [1, 2]);
+});
+
+test("more answers than judges is refused", async () => {
+  const { out, panelOut } = await run([
+    singleAnswer(shots), singleAnswer(shots), singleAnswer(shots), singleAnswer(shots),
+  ]);
+  await assert.rejects(tally(out, { panelOut }), /found 4/);
+});
+
+test("the command says where it wrote the delivered copy", async () => {
+  const { d, out } = await run([singleAnswer(shots), singleAnswer(shots), singleAnswer(shots)]);
+  const bin = fileURLToPath(new URL("../bin/video-director.mjs", import.meta.url));
+  const r = spawnSync(process.execPath, [bin, "tally", out], { cwd: d, encoding: "utf8" });
+  assert.equal(r.status, 0, r.stderr);
+  assert.ok(r.stdout.includes(`Delivered copy: ${join(d, "PANEL.md")}`), r.stdout);
+});

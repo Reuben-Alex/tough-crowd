@@ -46,7 +46,9 @@ HyperFrames Pro.
 3. **The plugin film.** A different fresh agent is given the same brief word for word, the stock
    skills, `skills/direct/`, and the `plugin` project. It is told the panel will be run for it.
    Whoever runs the test follows `skills/direct/references/panel.md` on its behalf: `packet`,
-   three fresh judges, `tally`, send `PANEL.md` back, up to three runs, then `verify`.
+   three fresh judges, `tally`, send `PANEL.md` back, up to three runs, then `verify`. Run
+   those commands from the plugin project folder, so the packets and `PANEL.md` land there and
+   not in this repository's root.
 
 4. **The comparison:**
 
@@ -58,8 +60,10 @@ HyperFrames Pro.
 
 5. **Record** the row in `bench/results.md`.
 
-6. **The owner's pick.** Give the owner both file paths without saying which is which, and
-   record their choice.
+6. **The owner's pick.** Copy the two films to neutral names first: the paths themselves say
+   `stock` and `plugin`. Use the letters the comparison already drew (`ab/key.json` maps each
+   letter to its film) and copy them to `.director/bench/<nn>/owner/<letter>.mp4`. Give the
+   owner those two paths, say nothing about which is which, and record their choice.
 
 ## Keeping it fair
 

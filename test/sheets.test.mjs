@@ -49,3 +49,24 @@ test("a single shot has no strips", async () => {
   });
   assert.deepEqual(strips, []);
 });
+
+test("a tile shows the frame at its labelled time, not a later one", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const { findTool, run } = await import("../src/ffmpeg.mjs");
+  const dir = await mkdtemp(join(tmpdir(), "vd timing "));
+  const film = join(dir, "red-then-blue.mp4");
+  // Red until 0.8 s, blue after. The tile for 0.75 s must still be red.
+  await run("ffmpeg", [
+    "-y", "-loglevel", "error",
+    "-f", "lavfi", "-i", "color=red:s=320x180:d=0.8:r=30",
+    "-f", "lavfi", "-i", "color=blue:s=320x180:d=1.2:r=30",
+    "-filter_complex", "[0:v][1:v]concat=n=2:v=1,format=yuv420p", film,
+  ]);
+  const [sheet] = await makeSheets({ film, outDir: join(dir, "s"), labels: false });
+  // Tile 4 (0.75 s) is the first tile of the second row: its centre is near (320, 546).
+  const px = spawnSync(findTool("ffmpeg"), [
+    "-loglevel", "error", "-i", sheet, "-vf", "crop=8:8:316:542", "-frames:v", "1",
+    "-f", "rawvideo", "-pix_fmt", "rgb24", "-",
+  ]).stdout;
+  assert.ok(px[0] > 150 && px[2] < 100, `tile at 0.75 s should be red, got rgb(${px[0]},${px[1]},${px[2]})`);
+});

@@ -6,6 +6,10 @@ const SHEET = { fps: 4, width: 640, height: 360, cols: 3, rows: 4 };
 const STRIP = { fps: 12, width: 480, height: 270, cols: 6, half: 0.5 };
 const PADDING = "padding=6:color=black";
 
+// `round=up` makes a tile show the first frame at or after its labelled time. The default
+// rounds to nearest and keeps the last frame, which shows up to a tenth of a second later
+// and can put the next shot's frame on the previous shot's last tile.
+
 /** A burned-in film-time label. `offset` is added when the input was seeked. */
 const label = (size, offset = 0) =>
   `drawtext=text='%{pts\\:hms\\:${offset}}':x=8:y=8:fontsize=${size}:fontcolor=white:box=1:boxcolor=black@0.65`;
@@ -18,7 +22,7 @@ const number = (n) => String(n).padStart(2, "0");
 export async function makeSheets({ film, outDir, labels = true }) {
   await mkdir(outDir, { recursive: true });
   const filter = chain(
-    `fps=${SHEET.fps}`,
+    `fps=${SHEET.fps}:round=up`,
     `scale=${SHEET.width}:${SHEET.height}`,
     labels && label(20),
     `tile=${SHEET.cols}x${SHEET.rows}:${PADDING}`,
@@ -43,7 +47,7 @@ export async function boundaryStrips({ film, outDir, shots, duration, labels = t
     const rows = Math.max(1, Math.ceil(Math.round(length * STRIP.fps) / STRIP.cols));
     const path = resolve(outDir, `strip-${number(index + 1)}.jpg`);
     const filter = chain(
-      `fps=${STRIP.fps}`,
+      `fps=${STRIP.fps}:round=up`,
       `scale=${STRIP.width}:${STRIP.height}`,
       labels && label(16, from),
       `tile=${STRIP.cols}x${rows}:${PADDING}`,
