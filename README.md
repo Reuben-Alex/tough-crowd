@@ -62,7 +62,7 @@ video-director verify <film> [--panel <PANEL.md>]
 
 ## Limits
 
-- **Judges see stills.** Motion at speed and sound are not judged, and every `PANEL.md` says so.
+- **Judges see stills.** They cannot judge motion at speed or sound, and every `PANEL.md` says so.
   A person watching the film is still the only check on how it feels.
 - **Judges are noisy.** Three judges and a majority reduce that; they do not remove it.
 - **It costs more.** A judged film uses roughly 150k more tokens per panel run than an unjudged
