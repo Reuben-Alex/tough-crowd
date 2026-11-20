@@ -40,7 +40,12 @@ test("staging carries all ten rules", async () => {
 
 test("the panel procedure fixes the judge prompt and the commands", async () => {
   const p = await read("skills/direct/references/panel.md");
-  assert.ok(p.includes("Reply with only the JSON object it asks for."));
+  assert.ok(
+    p.includes(
+      "Write the JSON object it asks for to `<answers folder>/judge-<n>.json`, then reply with only that path.",
+    ),
+  );
+  assert.ok(!p.includes("Save each reply"));
   for (const word of ["judge-1.json", "--round", "--ab", "three new judges"]) {
     assert.ok(p.includes(word), word);
   }
@@ -49,7 +54,7 @@ test("the panel procedure fixes the judge prompt and the commands", async () => 
 test("the direction reference shows the shots block", async () => {
   assert.ok(
     (await read("skills/direct/references/direction.md")).includes(
-      "```shots\n0.0-1.3 | the mess",
+      "```shots\n0.0-2.0 | the draft",
     ),
   );
 });

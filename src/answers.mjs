@@ -126,6 +126,7 @@ function abAnswer(raw, key, file) {
  * priorities are forgiven; anything else that does not fit is refused by name.
  */
 export function parseAnswer(reply, key, file) {
+  reply = reply.replace(/^\uFEFF/, "");
   const fenced = reply.match(FENCE);
   let raw;
   try {
@@ -135,7 +136,7 @@ export function parseAnswer(reply, key, file) {
   }
   if (raw === null || typeof raw !== "object" || Array.isArray(raw)) {
     throw new ToolError(
-      `${file}: not a JSON object. A judge must reply with only the JSON object; run this judge again.`,
+      `${file}: not a JSON object. A judge's answer must be only the JSON object; run this judge again.`,
     );
   }
   return key.mode === "ab" ? abAnswer(raw, key, file) : singleAnswer(raw, key, file);

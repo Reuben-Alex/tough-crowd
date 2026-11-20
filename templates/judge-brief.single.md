@@ -43,9 +43,11 @@ These are stills, so you cannot judge easing curves or how motion feels at speed
 4. **Must-fix list.** Eight items at most, most important first. `P0` breaks the read or looks amateur; `P1` weakens the film. Each gives the time, where in the frame, the problem and the exact change.
 5. **What you could not judge.**
 
-Do not edit or write any files.
+Do not edit or write any file except your answer file.
 
-## Reply with only this JSON object
+## Your answer
+
+Write only this JSON object, with nothing before or after it, to the answer file your instructions name. If your instructions name no answer file, reply with only the object instead.
 
 ```json
 {

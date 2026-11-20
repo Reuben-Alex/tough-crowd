@@ -32,7 +32,7 @@ test("single brief carries the bar, the ranges and no author intent", () => {
   assert.ok(b.includes("/p/film/sheet-01.jpg") && b.includes("/p/film/strips/strip-01.jpg"));
   assert.ok(b.includes("do not mark down for missing sound"));
   for (const c of CRITERIA) assert.ok(b.includes(`"${c}"`));
-  assert.ok(b.includes("## Reply with only this JSON object"));
+  assert.ok(b.includes("## Your answer"));
 });
 
 test("silent line is absent when the film has sound", () => {
@@ -73,4 +73,17 @@ test("both briefs tell the judge to read nothing but the brief and its images", 
     films: [{ ...film("K"), strips: [] }, { ...film("R"), strips: [] }], shots: null, refs: [],
   });
   assert.ok(ab.includes(rule));
+});
+
+test("both briefs tell the judge to write the answer file, or reply when none is named", () => {
+  const ab = renderBrief({
+    mode: "ab", briefText: "Make a film.", silent: true, labels: true,
+    films: [{ ...film("K"), strips: [] }, { ...film("R"), strips: [] }], shots: null, refs: [],
+  });
+  for (const b of [single(), ab]) {
+    assert.ok(b.includes("to the answer file your instructions name"));
+    assert.ok(b.includes("If your instructions name no answer file, reply with only the object instead."));
+    assert.ok(b.includes("Do not edit or write any file except your answer file."));
+    assert.ok(!b.includes("Do not edit or write any files."));
+  }
 });

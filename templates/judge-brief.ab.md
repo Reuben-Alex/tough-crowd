@@ -38,9 +38,11 @@ These are stills, so you cannot judge easing curves or how motion feels at speed
 3. **Overall.** Which film is closer to the bar, or `none`, and by how much: `slightly`, `clearly` or `decisively`.
 4. **What you could not judge.**
 
-Do not edit or write any files.
+Do not edit or write any file except your answer file.
 
-## Reply with only this JSON object
+## Your answer
+
+Write only this JSON object, with nothing before or after it, to the answer file your instructions name. If your instructions name no answer file, reply with only the object instead.
 
 ```json
 {{answer}}

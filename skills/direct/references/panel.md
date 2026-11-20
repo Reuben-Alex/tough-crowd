@@ -1,8 +1,8 @@
 # Running the panel
 
 Three judges who did not make the film, who see only the brief and the frames, decide whether
-each shot ships. The tool does the mechanical parts; you start the judges and carry their
-answers across unchanged.
+each shot ships. The tool does the mechanical parts; you start the judges, and each judge
+writes its own answer file.
 
 `tc` below means `node <SKILL_DIR>/../../bin/tough-crowd.mjs`.
 
@@ -23,15 +23,17 @@ Run every command from the film's project folder: `packet` writes under `.direct
 
 2. **Start three fresh subagents at the same time.** A fresh subagent, not a fork of this
    session: a fork inherits the whole conversation and knows what you intended. Give each
-   exactly this and nothing else:
+   exactly this and nothing else, with `<n>` set to 1, 2 and 3:
 
-   > Read the file at `<brief path>` and follow it exactly. Read nothing else except the images it lists. Reply with only the JSON object it asks for.
+   > Read the file at `<brief path>` and follow it exactly. Read nothing else except the images it lists. Write the JSON object it asks for to `<answers folder>/judge-<n>.json`, then reply with only that path.
 
    No summary of the film, no intent, no earlier results, no encouragement.
 
-3. **Save each reply, unedited**, in the answers folder as `judge-1.json`, `judge-2.json` and
-   `judge-3.json`. If a judge fails or replies with anything but the object, start a new one.
-   Never fill in, repair or complete an answer yourself.
+3. **Check the answers folder** holds `judge-1.json`, `judge-2.json` and `judge-3.json`. If a
+   judge failed or wrote no file, delete anything it left and start a new judge with the same
+   number. Never write, fill in, repair or complete an answer yourself. If your subagents cannot
+   write files, end the prompt with "Reply with only the JSON object it asks for." instead, and
+   save each reply unedited under the same names.
 
 4. **Tally:**
 

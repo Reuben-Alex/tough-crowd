@@ -56,7 +56,8 @@ HyperFrames Pro.
    tc packet .director/bench/<nn>/plugin/out/film.mp4 --ab .director/bench/<nn>/stock/out/film.mp4 --brief bench/briefs/<file> --silent --out .director/bench/<nn>/ab
    ```
 
-   Three fresh judges, each given only the brief `packet` wrote, then `tc tally .director/bench/<nn>/ab`.
+   Three fresh judges, each given only the judge prompt from `skills/direct/references/panel.md`
+   with the brief and answers folder `packet` printed, then `tc tally .director/bench/<nn>/ab`.
 
 5. **Record** the row in `bench/results.md`.
 

@@ -72,6 +72,12 @@ test("fenced JSON and capitals are tolerated", async () => {
   assert.deepEqual((await tally(out, { panelOut })).panel.rejected, [0]);
 });
 
+test("an answer file saved with a byte-order mark is read", async () => {
+  const bom = "﻿" + JSON.stringify(singleAnswer(shots, { reject: [1] }));
+  const { out, panelOut } = await run([bom, bom, singleAnswer(shots)]);
+  assert.deepEqual((await tally(out, { panelOut })).panel.rejected, [1]);
+});
+
 test("a missing shot is refused, naming the file", async () => {
   const short = singleAnswer(shots);
   short.shots.pop();
