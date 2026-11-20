@@ -4,7 +4,7 @@ import { basename, join } from "node:path";
 import { parseAnswer } from "./answers.mjs";
 import { ToolError } from "./ffmpeg.mjs";
 
-const FOOTER = /<!-- video-director (\{.*\}) -->\s*$/;
+const FOOTER = /<!-- tough-crowd (\{.*\}) -->\s*$/;
 const NOT_JUDGED = "**Not judged: motion at speed, and sound.**";
 
 const shotLabel = (shot) => `${shot.start}-${shot.end} ${shot.name}`;
@@ -173,7 +173,7 @@ function renderSingle(panel) {
     rejected: rejected.map((index) => shotLabel(shots[index])),
     reachesBar: reachesBar.majority,
   };
-  lines.push("", `<!-- video-director ${JSON.stringify(footer)} -->`, "");
+  lines.push("", `<!-- tough-crowd ${JSON.stringify(footer)} -->`, "");
   return lines.join("\n");
 }
 

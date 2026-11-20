@@ -6,7 +6,7 @@ const read = (p) => readFile(new URL(`../${p}`, import.meta.url), "utf8");
 
 test("the manifest names the plugin", async () => {
   const m = JSON.parse(await read(".claude-plugin/plugin.json"));
-  assert.equal(m.name, "video-director");
+  assert.equal(m.name, "tough-crowd");
   assert.equal(m.license, "Apache-2.0");
 });
 

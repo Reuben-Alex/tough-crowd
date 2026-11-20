@@ -134,7 +134,7 @@ test("the command exits 1 when a shot is rejected and writes PANEL.md beside it"
     singleAnswer(shots, { reject: [0] }),
     singleAnswer(shots),
   ]);
-  const bin = fileURLToPath(new URL("../bin/video-director.mjs", import.meta.url));
+  const bin = fileURLToPath(new URL("../bin/tough-crowd.mjs", import.meta.url));
   const r = spawnSync(process.execPath, [bin, "tally", out], { cwd: d, encoding: "utf8" });
   assert.equal(r.status, 1, r.stderr);
   assert.match(r.stdout, /Rejected shots: 1 of 3/);
@@ -161,7 +161,7 @@ test("more answers than judges is refused", async () => {
 
 test("the command says where it wrote the delivered copy", async () => {
   const { d, out } = await run([singleAnswer(shots), singleAnswer(shots), singleAnswer(shots)]);
-  const bin = fileURLToPath(new URL("../bin/video-director.mjs", import.meta.url));
+  const bin = fileURLToPath(new URL("../bin/tough-crowd.mjs", import.meta.url));
   const r = spawnSync(process.execPath, [bin, "tally", out], { cwd: d, encoding: "utf8" });
   assert.equal(r.status, 0, r.stderr);
   assert.ok(r.stdout.includes(`Delivered copy: ${join(d, "PANEL.md")}`), r.stdout);

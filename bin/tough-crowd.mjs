@@ -6,7 +6,7 @@ import { packet } from "../src/packet.mjs";
 import { tally } from "../src/tally.mjs";
 import { verify } from "../src/verify.mjs";
 
-const USAGE = `Usage: video-director <command>
+const USAGE = `Usage: tough-crowd <command>
 
   packet <film> --brief <file> --direction <DIRECTION.md> [--round <n>] [--silent]
       Prepare what the judges see for one film.

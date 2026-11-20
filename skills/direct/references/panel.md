@@ -4,7 +4,7 @@ Three judges who did not make the film, who see only the brief and the frames, d
 each shot ships. The tool does the mechanical parts; you start the judges and carry their
 answers across unchanged.
 
-`vd` below means `node <SKILL_DIR>/../../bin/video-director.mjs`.
+`tc` below means `node <SKILL_DIR>/../../bin/tough-crowd.mjs`.
 
 Run every command from the film's project folder: `packet` writes under `.director/` there, and
 `tally` and `verify` use the `PANEL.md` there.
@@ -14,7 +14,7 @@ Run every command from the film's project folder: `packet` writes under `.direct
 1. **Render the draft**, then prepare the packet:
 
    ```
-   vd packet <film> --brief BRIEF.md --direction DIRECTION.md --round <n>
+   tc packet <film> --brief BRIEF.md --direction DIRECTION.md --round <n>
    ```
 
    Add `--silent` when the film has no sound. If the person gave you reference frames that show
@@ -36,7 +36,7 @@ Run every command from the film's project folder: `packet` writes under `.direct
 4. **Tally:**
 
    ```
-   vd tally <packet folder>
+   tc tally <packet folder>
    ```
 
    Exit 0: nothing is rejected; go to step 6. Exit 1: read `PANEL.md`.
@@ -48,7 +48,7 @@ Run every command from the film's project folder: `packet` writes under `.direct
 6. **Verify the file you are about to deliver:**
 
    ```
-   vd verify <film>
+   tc verify <film>
    ```
 
    It refuses a file that is not the one judged. Write the delivery note from what it prints.
@@ -63,7 +63,7 @@ Run every command from the film's project folder: `packet` writes under `.direct
 ## Comparing two films
 
 ```
-vd packet <film> --ab <other film> --brief BRIEF.md
+tc packet <film> --ab <other film> --brief BRIEF.md
 ```
 
 Then steps 2 to 4. Both films get identical packets under neutral names, and `tally` reports

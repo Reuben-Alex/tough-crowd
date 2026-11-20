@@ -31,7 +31,7 @@ HyperFrames Pro.
 
 ## One brief
 
-`<nn>` is the brief's number, `vd` is `node bin/video-director.mjs`.
+`<nn>` is the brief's number, `tc` is `node bin/tough-crowd.mjs`.
 
 1. **Two blank projects:**
 
@@ -53,10 +53,10 @@ HyperFrames Pro.
 4. **The comparison:**
 
    ```
-   vd packet .director/bench/<nn>/plugin/out/film.mp4 --ab .director/bench/<nn>/stock/out/film.mp4 --brief bench/briefs/<file> --silent --out .director/bench/<nn>/ab
+   tc packet .director/bench/<nn>/plugin/out/film.mp4 --ab .director/bench/<nn>/stock/out/film.mp4 --brief bench/briefs/<file> --silent --out .director/bench/<nn>/ab
    ```
 
-   Three fresh judges, each given only the brief `packet` wrote, then `vd tally .director/bench/<nn>/ab`.
+   Three fresh judges, each given only the brief `packet` wrote, then `tc tally .director/bench/<nn>/ab`.
 
 5. **Record** the row in `bench/results.md`.
 

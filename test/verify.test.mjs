@@ -56,7 +56,7 @@ test("no panel result is refused", async () => {
 
 test("the command finds PANEL.md in the current folder and exits 2 on a changed film", async () => {
   const { d, film } = await judged([]);
-  const bin = fileURLToPath(new URL("../bin/video-director.mjs", import.meta.url));
+  const bin = fileURLToPath(new URL("../bin/tough-crowd.mjs", import.meta.url));
   const run = () => spawnSync(process.execPath, [bin, "verify", film], { cwd: d, encoding: "utf8" });
   const ok = run();
   assert.equal(ok.status, 0, ok.stderr);

@@ -1,5 +1,5 @@
 {
-  "name": "video-director",
+  "name": "tough-crowd",
   "version": "0.1.0",
   "description": "Direct product films shot by shot on HyperFrames and have a blind panel of judges accept or reject each shot.",
   "type": "module",
@@ -8,7 +8,7 @@
     "node": ">=22"
   },
   "bin": {
-    "video-director": "bin/video-director.mjs"
+    "tough-crowd": "bin/tough-crowd.mjs"
   },
   "scripts": {
     "test": "node --test"

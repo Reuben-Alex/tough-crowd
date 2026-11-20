@@ -7,13 +7,13 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { makeClip } from "./helpers/clip.mjs";
 
-const BIN = fileURLToPath(new URL("../bin/video-director.mjs", import.meta.url));
+const BIN = fileURLToPath(new URL("../bin/tough-crowd.mjs", import.meta.url));
 const cli = (args, cwd) => spawnSync(process.execPath, [BIN, ...args], { cwd, encoding: "utf8" });
 
 test("an unknown command prints usage and exits 2", () => {
   const r = cli(["nonsense"]);
   assert.equal(r.status, 2);
-  assert.match(r.stderr, /Usage: video-director/);
+  assert.match(r.stderr, /Usage: tough-crowd/);
 });
 
 test("a bad input exits 2 with a message, not a stack trace", () => {
@@ -40,7 +40,7 @@ test("packet prints its result as JSON", async () => {
 test("a name inherited from Object is not a command", () => {
   const r = cli(["toString"]);
   assert.equal(r.status, 2);
-  assert.match(r.stderr, /Usage: video-director/);
+  assert.match(r.stderr, /Usage: tough-crowd/);
 });
 
 test("an unexpected failure exits 2, never the rejected-shot code", async () => {

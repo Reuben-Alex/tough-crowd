@@ -23,7 +23,7 @@ file you deliver.**
   composition is built, checked and rendered. This skill never replaces it.
 - **Subagents**, for the panel. A harness that cannot start them delivers the film marked
   **unjudged** (see The gate).
-- **The tool.** Run it as `node <SKILL_DIR>/../../bin/video-director.mjs <command>`, where
+- **The tool.** Run it as `node <SKILL_DIR>/../../bin/tough-crowd.mjs <command>`, where
   `<SKILL_DIR>` is this skill's base directory. Its commands are `packet`, `tally` and
   `verify`. It needs FFmpeg. Run every command from the film's project folder: `packet` writes
   under `.director/` there, and `tally` and `verify` use the `PANEL.md` there.
